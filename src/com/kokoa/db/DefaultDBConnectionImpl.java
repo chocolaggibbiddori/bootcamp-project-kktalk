@@ -38,7 +38,6 @@ public class DefaultDBConnectionImpl implements DBConnection {
             close(con, pstmt, rs);
         }
 
-        System.out.println("아이디 혹은 비밀번호가 일치하지 않습니다!");
         return false;
     }
 

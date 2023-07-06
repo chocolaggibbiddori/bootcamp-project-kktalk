@@ -9,15 +9,22 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Test {
+
+    private static final Controller controller = Controller.getInstance();
+
     public static void main(String[] args) throws SQLException {
-        dropAllTable();
-        createAllTable();
+        testInit();
         insertData();
-        Controller controller = Controller.getInstance();
         controller.login(new UserInfo("didrkd684", "tkfkdgo486"));
+        controller.login(new UserInfo("chocola", "1234"));
     }
 
-    static void dropAllTable() throws SQLException {
+    private static void testInit() throws SQLException {
+        dropAllTable();
+        createAllTable();
+    }
+
+    private static void dropAllTable() throws SQLException {
         Connection con = DBConnectionUtil.getConnection();
         Statement stmt = con.createStatement();
         stmt.execute("drop table if exists login");
@@ -25,7 +32,7 @@ public class Test {
         stmt.execute("drop table if exists friend");
     }
 
-    static void createAllTable() throws SQLException {
+    private static void createAllTable() throws SQLException {
         Connection con = DBConnectionUtil.getConnection();
         Statement stmt = con.createStatement();
         stmt.execute("create table login(\n" +
@@ -42,7 +49,7 @@ public class Test {
                 "friend_id varchar(20))");
     }
 
-    static void insertData() throws SQLException {
+    private static void insertData() throws SQLException {
         Connection con = DBConnectionUtil.getConnection();
         Statement stmt = con.createStatement();
         stmt.executeUpdate("insert into login values('didrkd684', 'tkfkdgo486')");
