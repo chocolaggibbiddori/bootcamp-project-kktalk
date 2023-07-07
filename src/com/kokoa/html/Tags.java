@@ -330,7 +330,6 @@ public class Tags {
     }
 
     public Tags friendsList(List<ProfileDto> friends) {
-        System.out.println(friends);
         for (ProfileDto friend : friends) {
             openDiv("class", "user-component__friends");
             openDiv("class", "user-component__column");

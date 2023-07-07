@@ -22,13 +22,8 @@ public class Controller {
         return INSTANCE;
     }
 
-    public void login(UserInfo userInfo) {
-        if (connection.authenticateUser(userInfo)) {
-            System.out.println("로그인 성공!");
-            makeFriendListHTML(userInfo);
-        } else {
-            System.out.println("아이디 혹은 비밀번호가 일치하지 않습니다!");
-        }
+    public boolean login(UserInfo userInfo) {
+        return connection.authenticateUser(userInfo);
     }
 
     public void makeFriendListHTML(UserInfo userInfo) {

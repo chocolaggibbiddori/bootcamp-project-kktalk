@@ -27,18 +27,13 @@ public class DefaultDBConnectionImpl implements DBConnection {
             pstmt = con.prepareStatement(query);
             pstmt.setString(1, userInfo.getId());
             rs = pstmt.executeQuery();
-
-            if (isValidUser(userInfo, rs)) {
-                return true;
-            }
+            return isValidUser(userInfo, rs);
         } catch (SQLException e) {
             e.printStackTrace();
             throw new IllegalStateException(e);
         } finally {
             close(con, pstmt, rs);
         }
-
-        return false;
     }
 
     private boolean isValidUser(UserInfo userInfo, ResultSet rs) throws SQLException {

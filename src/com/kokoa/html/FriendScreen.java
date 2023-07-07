@@ -11,7 +11,6 @@ import java.util.List;
 public class FriendScreen {
 
     public static void makeFriendScreenHTML(UserInfo userInfo, List<ProfileDto> friends) {
-        System.out.println("HTML 파일을 생성합니다.");
         String uri = "references/friends.html";
         String tags = getTags(userInfo, friends);
         FileUtil.writeHtml(uri, tags);
