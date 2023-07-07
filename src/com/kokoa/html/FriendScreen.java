@@ -1,7 +1,9 @@
 package com.kokoa.html;
 
+import com.kokoa.db.DefaultDBConnectionImpl;
 import com.kokoa.domain.Profile;
 import com.kokoa.domain.UserInfo;
+import com.kokoa.dto.ProfileTags;
 import com.kokoa.file.FileUtil;
 
 import java.util.List;
@@ -9,13 +11,24 @@ import java.util.List;
 public class FriendScreen {
 
     public static void makeFriendScreenHTML(UserInfo userInfo, List<Profile> friends) {
-    	System.out.println("HTML 파일을 생성합니다.");
+        System.out.println("HTML 파일을 생성합니다.");
         String uri = "references/friends.html";
         String tags = getTags(userInfo, friends);
         FileUtil.writeHtml(uri, tags);
     }
 
     private static String getTags(UserInfo userInfo, List<Profile> friends) {
+        DefaultDBConnectionImpl dbConnection = new DefaultDBConnectionImpl();
+        ProfileTags profileById = dbConnection.getProfileById(userInfo.getId());
+
+        if (profileById == null) {
+            return "";
+        }
+
+        String my_img = profileById.getImg();
+        String my_name = profileById.getName();
+        String my_message = profileById.getMessage();
+
         return Tags.start()
                 .docTypeHtml()
                 .openHtml("lang", "en")
@@ -66,15 +79,18 @@ public class FriendScreen {
                 .openMain("class", "friends-screen")
                 .openDiv("class", "user-component")
                 .openDiv("class", "user-component__column")
-                .img("src", "https://avatars.githubusercontent.com/u/90658158",
+                .img("src", my_img,
                         "class", "user-component__avatar user-component__avatar--xl")
                 .openDiv("class", "user-component__text")
-                .h4("class", "user-component__title", "John.Jeongwoo")
+                .h4("class", "user-component__title", my_name)
+                .div("class", "user-component__mytext", my_message)
                 .closeDiv()
                 .closeDiv()
                 .div("class", "user-component__column", "")
                 .closeDiv()
+                .closeDiv()
 
+                // channel
                 .openDiv("class", "friends-screen__channel")
                 .openDiv("class", "friends-screen__channel-header")
                 .span("Channel")
@@ -95,6 +111,18 @@ public class FriendScreen {
                 .closeDiv()
                 .closeDiv()
                 .closeDiv()
+
+                // friends
+                .openDiv("class", "friends-screen__friends")
+                .openDiv("class", "friends-screen__friends-header")
+                .span("Friends")
+                .i("class", "fas fa-chevron-up fa-xs", "")
+                .closeDiv()
+
+                // friendsList
+                .friendsList(friends)
+                .closeDiv()
+
                 .closeMain()
 
                 .openNav("class", "nav")

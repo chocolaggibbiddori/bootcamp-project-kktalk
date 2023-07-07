@@ -1,5 +1,9 @@
 package com.kokoa.html;
 
+import com.kokoa.domain.Profile;
+
+import java.util.List;
+
 public class Tags {
 
     private static final String OPEN_TAG_LEFT = "<";
@@ -322,6 +326,21 @@ public class Tags {
 
     public Tags script(String prop0, String value0, String prop1, String value1, String content) {
         tag("script", prop0, value0, prop1, value1, content);
+        return this;
+    }
+
+    public Tags friendsList(List<Profile> friends) {
+        System.out.println(friends);
+        for (Profile friend : friends) {
+            openDiv("class", "user-component__friends");
+            openDiv("class", "user-component__column");
+            img("src", friend.getImg_url(), "class", "user-component__avatar user-component__avatar--sm");
+            openDiv("class", "user-component__text");
+            h4("class", "user-component__title user-component__title--not-bold", friend.getName());
+            closeDiv();
+            closeDiv();
+            closeDiv();
+        }
         return this;
     }
 

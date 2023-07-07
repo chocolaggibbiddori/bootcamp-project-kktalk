@@ -3,6 +3,7 @@ package com.kokoa.db;
 import com.kokoa.domain.FriendProfile;
 import com.kokoa.domain.Profile;
 import com.kokoa.domain.UserInfo;
+import com.kokoa.dto.ProfileTags;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -77,7 +78,7 @@ public class DefaultDBConnectionImpl implements DBConnection {
     }
 
     private Profile getProfileById(Connection con, String id) {
-        String query = "select name, img_url, profile_message from profile where id = ?";
+        String query = "select name, img_url from profile where id = ?";
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
@@ -89,14 +90,40 @@ public class DefaultDBConnectionImpl implements DBConnection {
             if (rs.next()) {
                 String name = rs.getString("name");
                 String img_url = rs.getString("img_url");
-                String profile_message = rs.getString("profile_message");
-                return new FriendProfile(id, name, img_url, profile_message);
+                return new FriendProfile(id, name, img_url);
             }
         } catch (SQLException e) {
             e.printStackTrace();
             throw new IllegalStateException(e);
         } finally {
             close(null, pstmt, rs);
+        }
+
+        return null;
+    }
+
+    public ProfileTags getProfileById(String id) {
+        Connection con = getConnection();
+        String query = "select name, img_url, profile_message from profile where id = ?";
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            pstmt = con.prepareStatement(query);
+            pstmt.setString(1, id);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                String name = rs.getString("name");
+                String img = rs.getString("img_url");
+                String message = rs.getString("profile_message");
+                return new ProfileTags(img, name, message);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new IllegalStateException(e);
+        } finally {
+            close(con, pstmt, rs);
         }
 
         return null;

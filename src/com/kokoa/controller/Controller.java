@@ -27,7 +27,6 @@ public class Controller {
             System.out.println("로그인 성공!");
             makeFriendListHTML(userInfo);
         } else {
-            // TODO: 2023/07/05 실패 시 오류 페이지 만들기(선택)
             System.out.println("아이디 혹은 비밀번호가 일치하지 않습니다!");
         }
     }
