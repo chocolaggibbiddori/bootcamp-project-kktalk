@@ -1,3 +1,8 @@
+references/index.html
+references/friends.html
+src/com/kokoa/Main.java
+src/com/kokoa/Test.java
+
 ### IntelliJ IDEA ###
 out/
 !**/src/main/**/out/

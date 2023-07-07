@@ -2,8 +2,8 @@ package com.kokoa.controller;
 
 import com.kokoa.db.DBConnection;
 import com.kokoa.db.DefaultDBConnectionImpl;
-import com.kokoa.domain.Profile;
 import com.kokoa.domain.UserInfo;
+import com.kokoa.dto.ProfileDto;
 import com.kokoa.html.FriendScreen;
 
 import java.util.List;
@@ -32,7 +32,7 @@ public class Controller {
     }
 
     public void makeFriendListHTML(UserInfo userInfo) {
-        List<Profile> friends = connection.getFriends(userInfo);
+        List<ProfileDto> friends = connection.getFriends(userInfo);
         FriendScreen.makeFriendScreenHTML(userInfo, friends);
     }
 }

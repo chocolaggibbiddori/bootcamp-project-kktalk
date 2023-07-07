@@ -1,9 +1,8 @@
 package com.kokoa.db;
 
-import com.kokoa.domain.FriendProfile;
-import com.kokoa.domain.Profile;
 import com.kokoa.domain.UserInfo;
-import com.kokoa.dto.ProfileTags;
+import com.kokoa.dto.ProfileDto;
+import com.kokoa.dto.ProfileTagsDto;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -51,13 +50,13 @@ public class DefaultDBConnectionImpl implements DBConnection {
     }
 
     @Override
-    public List<Profile> getFriends(UserInfo userInfo) {
+    public List<ProfileDto> getFriends(UserInfo userInfo) {
         Connection con = getConnection();
         String query = "select friend_id from friend where my_id = ?";
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
-        List<Profile> friends = new ArrayList<>();
+        List<ProfileDto> friends = new ArrayList<>();
         try {
             pstmt = con.prepareStatement(query);
             pstmt.setString(1, userInfo.getId());
@@ -77,7 +76,7 @@ public class DefaultDBConnectionImpl implements DBConnection {
         return friends;
     }
 
-    private Profile getProfileById(Connection con, String id) {
+    private ProfileDto getProfileById(Connection con, String id) {
         String query = "select name, img_url from profile where id = ?";
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -90,7 +89,7 @@ public class DefaultDBConnectionImpl implements DBConnection {
             if (rs.next()) {
                 String name = rs.getString("name");
                 String img_url = rs.getString("img_url");
-                return new FriendProfile(id, name, img_url);
+                return new ProfileDto(id, name, img_url);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -102,7 +101,7 @@ public class DefaultDBConnectionImpl implements DBConnection {
         return null;
     }
 
-    public ProfileTags getProfileById(String id) {
+    public ProfileTagsDto getProfileById(String id) {
         Connection con = getConnection();
         String query = "select name, img_url, profile_message from profile where id = ?";
         PreparedStatement pstmt = null;
@@ -117,7 +116,7 @@ public class DefaultDBConnectionImpl implements DBConnection {
                 String name = rs.getString("name");
                 String img = rs.getString("img_url");
                 String message = rs.getString("profile_message");
-                return new ProfileTags(img, name, message);
+                return new ProfileTagsDto(img, name, message);
             }
         } catch (SQLException e) {
             e.printStackTrace();

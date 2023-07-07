@@ -1,25 +1,25 @@
 package com.kokoa.html;
 
 import com.kokoa.db.DefaultDBConnectionImpl;
-import com.kokoa.domain.Profile;
 import com.kokoa.domain.UserInfo;
-import com.kokoa.dto.ProfileTags;
+import com.kokoa.dto.ProfileDto;
+import com.kokoa.dto.ProfileTagsDto;
 import com.kokoa.file.FileUtil;
 
 import java.util.List;
 
 public class FriendScreen {
 
-    public static void makeFriendScreenHTML(UserInfo userInfo, List<Profile> friends) {
+    public static void makeFriendScreenHTML(UserInfo userInfo, List<ProfileDto> friends) {
         System.out.println("HTML 파일을 생성합니다.");
         String uri = "references/friends.html";
         String tags = getTags(userInfo, friends);
         FileUtil.writeHtml(uri, tags);
     }
 
-    private static String getTags(UserInfo userInfo, List<Profile> friends) {
+    private static String getTags(UserInfo userInfo, List<ProfileDto> friends) {
         DefaultDBConnectionImpl dbConnection = new DefaultDBConnectionImpl();
-        ProfileTags profileById = dbConnection.getProfileById(userInfo.getId());
+        ProfileTagsDto profileById = dbConnection.getProfileById(userInfo.getId());
 
         if (profileById == null) {
             return "";

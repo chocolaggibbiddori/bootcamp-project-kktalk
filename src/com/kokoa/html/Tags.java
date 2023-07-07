@@ -1,6 +1,6 @@
 package com.kokoa.html;
 
-import com.kokoa.domain.Profile;
+import com.kokoa.dto.ProfileDto;
 
 import java.util.List;
 
@@ -329,12 +329,12 @@ public class Tags {
         return this;
     }
 
-    public Tags friendsList(List<Profile> friends) {
+    public Tags friendsList(List<ProfileDto> friends) {
         System.out.println(friends);
-        for (Profile friend : friends) {
+        for (ProfileDto friend : friends) {
             openDiv("class", "user-component__friends");
             openDiv("class", "user-component__column");
-            img("src", friend.getImg_url(), "class", "user-component__avatar user-component__avatar--sm");
+            img("src", friend.getImg(), "class", "user-component__avatar user-component__avatar--sm");
             openDiv("class", "user-component__text");
             h4("class", "user-component__title user-component__title--not-bold", friend.getName());
             closeDiv();
