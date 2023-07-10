@@ -4,7 +4,7 @@ import com.kokoa.db.DefaultDBConnectionImpl;
 import com.kokoa.domain.UserInfo;
 import com.kokoa.dto.ProfileDto;
 import com.kokoa.dto.ProfileTagsDto;
-import com.kokoa.file.FileUtil;
+import com.kokoa.util.FileUtil;
 
 import java.util.List;
 

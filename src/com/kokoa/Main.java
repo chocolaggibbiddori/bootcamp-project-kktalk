@@ -1,7 +1,7 @@
 package com.kokoa;
 
 import com.kokoa.controller.Controller;
-import com.kokoa.db.DBConnectionUtil;
+import com.kokoa.util.DBConnectionUtil;
 import com.kokoa.domain.UserInfo;
 import com.kokoa.console.Scan;
 
@@ -76,24 +76,23 @@ public class Main {
 
     private static void initTableLogin(Statement stmt) throws SQLException {
         stmt.executeUpdate("insert into login values('didrkd684', 'tkfkdgo486')");
-        stmt.executeUpdate("insert into login values('pjw', '1234')");
+        stmt.executeUpdate("insert into login values('kkh', '1234')");
     }
 
     private static void initTableProfile(Statement stmt) throws SQLException {
-        stmt.executeUpdate("insert into profile values('didrkd684', '강동희', 'https://avatars.githubusercontent.com/u/85636077?s=48&v=4', 'dev')");
-        stmt.executeUpdate("insert into profile values('pjw', '박정우', 'https://avatars.githubusercontent.com/u/90658158?s=48&v=4', 'dev')");
-        stmt.executeUpdate("insert into profile values('javaMachine', '김자바', 'https://ca.slack-edge.com/T059HAPCRB2-U058M1LPDAA-9f608b337c67-512', 'user')");
-        stmt.executeUpdate("insert into profile values('pythonMachine', '최썬', 'https://ca.slack-edge.com/T059HAPCRB2-U058M1LPDAA-9f608b337c67-512', 'user')");
-        stmt.executeUpdate("insert into profile values('rubyMachine', '이루비', 'https://ca.slack-edge.com/T059HAPCRB2-U05AQ8S6GVA-g17b6d25e2df-72', 'user')");
-        stmt.executeUpdate("insert into profile values('c#Machine', '박씨샵', 'https://ca.slack-edge.com/T059HAPCRB2-U059FL9AJQ6-55b1f1efc2ed-512', 'user')");
+        stmt.executeUpdate("insert into profile values('didrkd684', '강동희', 'https://avatars.githubusercontent.com/u/85636077?s=48&v=4', 'Im kktalk_운영자')");
+        stmt.executeUpdate("insert into profile values('pjw', '박정우', 'https://avatars.githubusercontent.com/u/90658158?s=48&v=4', 'Im kktalk_운영자')");
+        stmt.executeUpdate("insert into profile values('nemotnwl', '수지', 'https://ca.slack-edge.com/T059HAPCRB2-U058M1LPDAA-9f608b337c67-512', '화이팅')");
+        stmt.executeUpdate("insert into profile values('kkh', '강기훈', 'https://ca.slack-edge.com/T059HAPCRB2-U05AQ8S6GVA-g17b6d25e2df-72', '여기까지 이해가 되셨습니까')");
+        stmt.executeUpdate("insert into profile values('mintimel', '박기철', 'https://ca.slack-edge.com/T059HAPCRB2-U059FL9AJQ6-55b1f1efc2ed-512', 'ㅎㅎㅎㅎ')");
     }
 
     private static void initTableFriend(Statement stmt) throws SQLException {
-        stmt.executeUpdate("insert into friend values('didrkd684', 'javaMachine')");
-        stmt.executeUpdate("insert into friend values('didrkd684', 'pythonMachine')");
-        stmt.executeUpdate("insert into friend values('didrkd684', 'rubyMachine')");
-        stmt.executeUpdate("insert into friend values('didrkd684', 'c#Machine')");
-        stmt.executeUpdate("insert into friend values('pjw', 'javaMachine')");
-        stmt.executeUpdate("insert into friend values('pjw', 'pythonMachine')");
+        stmt.executeUpdate("insert into friend values('didrkd684', 'pjw')");
+        stmt.executeUpdate("insert into friend values('didrkd684', 'Amorvincit')");
+        stmt.executeUpdate("insert into friend values('kkh', 'didrkd684')");
+        stmt.executeUpdate("insert into friend values('kkh', 'pjw')");
+        stmt.executeUpdate("insert into friend values('kkh', 'nemotnwl')");
+        stmt.executeUpdate("insert into friend values('kkh', 'mintimel')");
     }
 }

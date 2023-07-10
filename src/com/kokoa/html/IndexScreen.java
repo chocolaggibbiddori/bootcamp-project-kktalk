@@ -1,7 +1,7 @@
 package com.kokoa.html;
 
 import com.kokoa.domain.UserInfo;
-import com.kokoa.file.FileUtil;
+import com.kokoa.util.FileUtil;
 
 public class IndexScreen {
 
@@ -44,7 +44,6 @@ public class IndexScreen {
                 .tag("p", "class", "welcome-header__text", "If you have a Kokoa Account, log in with your email or phone number.")
                 .closeHeader()
 
-                // TODO: 2023/07/10 링크 연결
                 .openTag("form", "action", "friends.html", "method", "get", "id", "login-form")
                 .input("name", "username", "required type", "text", "placeholder", "Email or phone number", "value", userInfo.getId())
                 .input("name", "password", "required type", "password", "placeholder", "password", "value", userInfo.getPassword())

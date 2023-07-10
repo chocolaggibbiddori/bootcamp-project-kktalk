@@ -1,4 +1,4 @@
-package com.kokoa.file;
+package com.kokoa.util;
 
 import java.io.Closeable;
 import java.io.FileWriter;

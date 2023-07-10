@@ -11,8 +11,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.kokoa.db.DBConnectionUtil.close;
-import static com.kokoa.db.DBConnectionUtil.getConnection;
+import static com.kokoa.util.DBConnectionUtil.close;
+import static com.kokoa.util.DBConnectionUtil.getConnection;
 
 public class DefaultDBConnectionImpl implements DBConnection {
 

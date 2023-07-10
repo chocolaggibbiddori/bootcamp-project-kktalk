@@ -1,4 +1,4 @@
-package com.kokoa.db;
+package com.kokoa.util;
 
 import java.sql.*;
 
