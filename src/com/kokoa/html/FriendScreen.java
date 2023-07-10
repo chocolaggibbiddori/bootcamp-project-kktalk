@@ -97,7 +97,7 @@ public class FriendScreen {
                 .closeDiv()
                 .openDiv("class", "user-component")
                 .openDiv("class", "user-component__column")
-                .img("src", "https://avatars.githubusercontent.com/u/90658158",
+                .img("src", "https://play-lh.googleusercontent.com/cf3DwPLbS8Z55sDvUSTQ6PL1goPdm8KbZ81g4TEUAaeUh5LDhkzdjxKQ2RX6BGpv0x4=w480-h960-rw",
                         "class", "user-component__avatar user-component__avatar--sm")
                 .openDiv("class", "user-component__text")
                 .h4("class", "user-component__title user-component__title--not-bold", "Channel")
