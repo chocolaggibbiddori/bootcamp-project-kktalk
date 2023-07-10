@@ -69,14 +69,26 @@ public class Main {
     private static void dataInit() throws SQLException {
         Connection con = DBConnectionUtil.getConnection();
         Statement stmt = con.createStatement();
+        initTableLogin(stmt);
+        initTableProfile(stmt);
+        initTableFriend(stmt);
+    }
+
+    private static void initTableLogin(Statement stmt) throws SQLException {
         stmt.executeUpdate("insert into login values('didrkd684', 'tkfkdgo486')");
         stmt.executeUpdate("insert into login values('pjw', '1234')");
+    }
+
+    private static void initTableProfile(Statement stmt) throws SQLException {
         stmt.executeUpdate("insert into profile values('didrkd684', '강동희', 'https://avatars.githubusercontent.com/u/85636077?s=48&v=4', 'dev')");
         stmt.executeUpdate("insert into profile values('pjw', '박정우', 'https://avatars.githubusercontent.com/u/90658158?s=48&v=4', 'dev')");
         stmt.executeUpdate("insert into profile values('javaMachine', '김자바', 'https://ca.slack-edge.com/T059HAPCRB2-U058M1LPDAA-9f608b337c67-512', 'user')");
         stmt.executeUpdate("insert into profile values('pythonMachine', '최썬', 'https://ca.slack-edge.com/T059HAPCRB2-U058M1LPDAA-9f608b337c67-512', 'user')");
         stmt.executeUpdate("insert into profile values('rubyMachine', '이루비', 'https://ca.slack-edge.com/T059HAPCRB2-U05AQ8S6GVA-g17b6d25e2df-72', 'user')");
         stmt.executeUpdate("insert into profile values('c#Machine', '박씨샵', 'https://ca.slack-edge.com/T059HAPCRB2-U059FL9AJQ6-55b1f1efc2ed-512', 'user')");
+    }
+
+    private static void initTableFriend(Statement stmt) throws SQLException {
         stmt.executeUpdate("insert into friend values('didrkd684', 'javaMachine')");
         stmt.executeUpdate("insert into friend values('didrkd684', 'pythonMachine')");
         stmt.executeUpdate("insert into friend values('didrkd684', 'rubyMachine')");
