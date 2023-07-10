@@ -74,6 +74,11 @@ public class Tags {
         return this;
     }
 
+    public Tags openTag(String tagName, String prop0, String value0, String prop1, String value1, String prop2, String value2) {
+        openTagExistArg(tagName, prop0, value0, prop1, value1, prop2, value2);
+        return this;
+    }
+
     public Tags closeTag(String tagName) {
         sb.append(CLOSE_TAG_LEFT).append(tagName).append(TAG_RIGHT);
         return this;
@@ -343,6 +348,35 @@ public class Tags {
         return this;
     }
 
+    public Tags input(String prop0, String value0, String prop1, String value1) {
+        openTagExistArgInline("input", prop0, value0, prop1, value1);
+        return this;
+    }
+
+    public Tags input(String prop0, String value0, String prop1, String value1, String content) {
+        openTagExistArg("input", prop0, value0, prop1, value1);
+        sb.append(content).append(LINE_BREAK);
+        closeTag("input");
+        return this;
+    }
+
+    public Tags input(String prop0, String value0, String prop1, String value1, String prop2, String value2) {
+        openTagExistArgInline("input", prop0, value0, prop1, value1, prop2, value2);
+        return this;
+    }
+
+    public Tags input(String prop0, String value0, String prop1, String value1, String prop2, String value2, String content) {
+        openTagExistArg("input", prop0, value0, prop1, value1, prop2, value2);
+        sb.append(content).append(LINE_BREAK);
+        closeTag("input");
+        return this;
+    }
+
+    public Tags input(String prop0, String value0, String prop1, String value1, String prop2, String value2, String prop3, String value3) {
+        openTagExistArgInline("input", prop0, value0, prop1, value1, prop2, value2, prop3, value3);
+        return this;
+    }
+
     private void addProperty(String prop0, String value0) {
         sb.append(prop0).append(EQUAL_BIG_QUOTES).append(value0).append(BIT_QUOTES);
     }
@@ -351,6 +385,24 @@ public class Tags {
         addProperty(prop0, value0);
         sb.append(BLANK);
         addProperty(prop1, value1);
+    }
+
+    private void addProperty(String prop0, String value0, String prop1, String value1, String prop2, String value2) {
+        addProperty(prop0, value0);
+        sb.append(BLANK);
+        addProperty(prop1, value1);
+        sb.append(BLANK);
+        addProperty(prop2, value2);
+    }
+
+    private void addProperty(String prop0, String value0, String prop1, String value1, String prop2, String value2, String prop3, String value3) {
+        addProperty(prop0, value0);
+        sb.append(BLANK);
+        addProperty(prop1, value1);
+        sb.append(BLANK);
+        addProperty(prop2, value2);
+        sb.append(BLANK);
+        addProperty(prop3, value3);
     }
 
     private void openTagNoArg(String tagName) {
@@ -373,6 +425,12 @@ public class Tags {
         sb.append(TAG_RIGHT);
     }
 
+    private void openTagExistArg(String tagName, String prop0, String value0, String prop1, String value1, String prop2, String value2) {
+        openTagExistArg(tagName);
+        addProperty(prop0, value0, prop1, value1, prop2, value2);
+        sb.append(TAG_RIGHT);
+    }
+
     private void openTagExistArgInline(String tagName, String prop0, String value0) {
         openTagExistArg(tagName);
         addProperty(prop0, value0);
@@ -382,6 +440,18 @@ public class Tags {
     private void openTagExistArgInline(String tagName, String prop0, String value0, String prop1, String value1) {
         openTagExistArg(tagName);
         addProperty(prop0, value0, prop1, value1);
+        sb.append(TAG_RIGHT_INLINE);
+    }
+
+    private void openTagExistArgInline(String tagName, String prop0, String value0, String prop1, String value1, String prop2, String value2) {
+        openTagExistArg(tagName);
+        addProperty(prop0, value0, prop1, value1, prop2, value2);
+        sb.append(TAG_RIGHT_INLINE);
+    }
+
+    private void openTagExistArgInline(String tagName, String prop0, String value0, String prop1, String value1, String prop2, String value2, String prop3, String value3) {
+        openTagExistArg(tagName);
+        addProperty(prop0, value0, prop1, value1, prop2, value2, prop3, value3);
         sb.append(TAG_RIGHT_INLINE);
     }
 }
